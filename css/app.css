@@ -71,12 +71,7 @@ button { cursor: pointer; }
   border-bottom: 1px solid var(--line);
 }
 .brand { display: flex; align-items: center; gap: 10px; margin-right: auto; }
-.brand-mark {
-  width: 32px; height: 32px; border-radius: 9px;
-  background:
-    radial-gradient(circle at 50% 50%, transparent 5px, var(--accent-ink) 5.5px, var(--accent-ink) 7px, transparent 7.5px),
-    conic-gradient(from 45deg, var(--accent) 0 25%, color-mix(in srgb, var(--accent) 75%, white) 0 50%, var(--accent) 0 75%, color-mix(in srgb, var(--accent) 75%, white) 0);
-}
+.brand-mark { width: 36px; height: 36px; border-radius: 10px; display: block; }
 .brand-title { font-weight: 700; letter-spacing: .2px; }
 .brand-sub { font-size: 12px; color: var(--muted); }
 .net { font-size: 12px; padding: 3px 8px; border-radius: 99px; background: var(--warn-soft); color: var(--ink); }
@@ -224,6 +219,8 @@ select {
 .verdict.close { background: var(--warn-soft); }
 .verdict.bad { background: var(--bad-soft); color: var(--bad); }
 .card-actions { display: grid; grid-template-columns: 1fr auto 1fr; gap: 10px; align-items: center; }
+#card-speak { color: var(--accent); }
+#card-speak.muted { color: var(--faint); }
 
 /* Buttons */
 .btn {

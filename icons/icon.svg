@@ -1,11 +1,54 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Битоке: стейк с яйцом-глазуньей и картошкой фри на тарелке, фон — азулежу -->
+  <defs>
+    <radialGradient id="plate" cx="50%" cy="45%" r="60%">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#efe7d8"/>
+    </radialGradient>
+    <linearGradient id="steak" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#9a5a2c"/>
+      <stop offset="1" stop-color="#5e2f14"/>
+    </linearGradient>
+    <radialGradient id="yolk" cx="40%" cy="38%" r="65%">
+      <stop offset="0" stop-color="#ffd25c"/>
+      <stop offset="1" stop-color="#f08a0c"/>
+    </radialGradient>
+    <linearGradient id="fry" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#f7cf5a"/>
+      <stop offset="1" stop-color="#e4a22a"/>
+    </linearGradient>
+  </defs>
+
   <rect width="512" height="512" rx="112" fill="#1f4fa3"/>
-  <g fill="#ffffff" opacity="0.14">
-    <path d="M0 0h256v256H0zM256 256h256v256H256z"/>
+  <path d="M0 0h256v256H0zM256 256h256v256H256z" fill="#ffffff" opacity="0.10"/>
+
+  <!-- тарелка -->
+  <circle cx="256" cy="262" r="204" fill="#0f2d63" opacity="0.35"/>
+  <circle cx="256" cy="252" r="200" fill="url(#plate)"/>
+  <circle cx="256" cy="252" r="160" fill="none" stroke="#e3d8c4" stroke-width="5"/>
+
+  <!-- картошка фри (под стейком) -->
+  <g stroke="#b9761a" stroke-width="4" stroke-linejoin="round">
+    <rect x="86" y="214" width="150" height="34" rx="9" fill="url(#fry)" transform="rotate(-50 161 231)"/>
+    <rect x="80" y="262" width="176" height="34" rx="9" fill="url(#fry)" transform="rotate(-30 168 279)"/>
+    <rect x="86" y="306" width="186" height="34" rx="9" fill="url(#fry)" transform="rotate(-12 179 323)"/>
+    <rect x="104" y="342" width="180" height="34" rx="9" fill="url(#fry)" transform="rotate(6 194 359)"/>
+    <rect x="134" y="372" width="166" height="34" rx="9" fill="url(#fry)" transform="rotate(24 217 389)"/>
+    <rect x="186" y="392" width="140" height="32" rx="9" fill="url(#fry)" transform="rotate(42 256 408)"/>
   </g>
-  <circle cx="256" cy="256" r="150" fill="none" stroke="#ffffff" stroke-width="22"/>
-  <circle cx="256" cy="256" r="104" fill="none" stroke="#ffffff" stroke-width="10" opacity="0.6"/>
-  <path d="M120 130v70a26 26 0 0 0 20 25v160h20V225a26 26 0 0 0 20-25v-70h-14v62h-10v-62h-12v62h-10v-62z" fill="#ffffff"/>
-  <path d="M392 130c-22 10-34 45-34 85 0 18 8 30 20 33v137h20V130z" fill="#ffffff"/>
-  <text x="256" y="282" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-weight="700" font-size="84" fill="#ffffff">PT</text>
+
+  <!-- стейк -->
+  <g transform="rotate(-14 290 228)">
+    <ellipse cx="292" cy="236" rx="128" ry="92" fill="#4a230e"/>
+    <ellipse cx="290" cy="228" rx="126" ry="88" fill="url(#steak)"/>
+    <g stroke="#3e1c0a" stroke-width="12" stroke-linecap="round" opacity="0.55">
+      <path d="M200 190l60 -34"/><path d="M196 248l120 -70"/><path d="M226 292l140 -82"/><path d="M296 300l84 -48"/>
+    </g>
+  </g>
+
+  <!-- яйцо-глазунья -->
+  <path d="M232 168c22-30 74-34 100-10 26 2 48 26 44 54 18 22 6 58-24 64-20 26-66 30-92 10-30 4-58-20-54-50-20-22-6-60 26-68z"
+        fill="#ffffff" stroke="#e8e0d2" stroke-width="3"/>
+  <circle cx="290" cy="222" r="40" fill="url(#yolk)"/>
+  <ellipse cx="276" cy="206" rx="12" ry="8" fill="#fff4cf" opacity="0.85" transform="rotate(-25 276 206)"/>
 </svg>

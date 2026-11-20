@@ -1,5 +1,5 @@
 // Офлайн: всё приложение и данные кешируются при первом открытии.
-const VERSION = "v4";
+const VERSION = "v5";
 const SHELL = `menu-shell-${VERSION}`;
 const RUNTIME = "menu-runtime";
 const FILES = [
@@ -7,7 +7,7 @@ const FILES = [
   "js/app.js", "js/data.js", "js/search.js", "js/cards.js", "js/menus.js", "js/store.js", "js/util.js", "js/config.js",
   "vendor/claude.js",
   "data/words.json", "data/chat_menus.json", "data/menus.json",
-  "icons/icon.svg", "icons/icon-180.png", "icons/icon-192.png", "icons/icon-512.png",
+  "icons/icon.svg", "icons/favicon-32.png", "icons/icon-180.png", "icons/icon-192.png", "icons/icon-512.png",
 ];
 
 self.addEventListener("install", (e) => {

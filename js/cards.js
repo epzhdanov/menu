@@ -1,6 +1,6 @@
 // Карточки PT → RU и RU → PT с простым интервальным повторением (коробки Лейтнера).
 import { state, CATS, menuTitle } from "./data.js";
-import { $, $$, esc, norm, stripArticle, lev, speak, lsGet, lsSet } from "./util.js";
+import { $, $$, esc, norm, stripArticle, lev, speak, lsGet, lsSet, toast, SPEAK_ICON } from "./util.js";
 
 const P_KEY = "cards.progress.v1";
 const S_KEY = "cards.settings.v1";
@@ -99,11 +99,32 @@ function back() {
   show(history.pop());
 }
 
+// Озвучка в карточках — только если звук не выключен.
+const say = (text) => { if (!settings.muted) speak(text); };
+
+const MUTED_ICON = `<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M4 9h4l5-4v14l-5-4H4V9Zm11.6 1.1 1.4-1.4 2.5 2.5 2.5-2.5 1.4 1.4-2.5 2.5 2.5 2.5-1.4 1.4-2.5-2.5-2.5 2.5-1.4-1.4 2.5-2.5-2.5-2.5Z"/></svg>`;
+
+function renderSound() {
+  const b = $("#card-speak");
+  b.innerHTML = settings.muted ? MUTED_ICON : SPEAK_ICON;
+  b.setAttribute("aria-pressed", String(!!settings.muted));
+  b.setAttribute("aria-label", settings.muted ? "Звук выключен — включить" : "Звук включён — выключить");
+  b.classList.toggle("muted", !!settings.muted);
+}
+
+function toggleSound() {
+  settings.muted = !settings.muted;
+  lsSet(S_KEY, settings);
+  if (settings.muted && "speechSynthesis" in window) speechSynthesis.cancel();
+  renderSound();
+  toast(settings.muted ? "Звук в карточках выключен" : "Звук в карточках включён");
+}
+
 function flip() {
   if (!current) return;
   flipped = !flipped;
   $("#card").classList.toggle("flipped", flipped);
-  if (flipped && settings.dir === "pt-ru") speak(current.pt);
+  if (flipped && settings.dir === "pt-ru") say(current.pt);
 }
 
 function grade(ok) {
@@ -133,7 +154,7 @@ function check(e) {
   else if (near) { v.className = "verdict close"; v.innerHTML = `Близко! Правильно: <b>${esc(current.pt)}</b>`; }
   else { v.className = "verdict bad"; v.innerHTML = `Правильно: <b>${esc(current.pt)}</b>`; }
   if (!flipped) flip();
-  speak(current.pt);
+  say(current.pt);
 }
 
 function fillDecks() {
@@ -190,7 +211,8 @@ export function initCards() {
   $("#card-prev").addEventListener("click", back);
   $("#card-yes").addEventListener("click", () => grade(true));
   $("#card-no").addEventListener("click", () => grade(false));
-  $("#card-speak").addEventListener("click", () => current && speak(current.pt));
+  $("#card-speak").addEventListener("click", toggleSound);
+  renderSound();
   $("#card-answer").addEventListener("submit", check);
   document.addEventListener("keydown", (e) => {
     if ($("#view-cards").hidden || e.target.matches("input, select, textarea")) return;
