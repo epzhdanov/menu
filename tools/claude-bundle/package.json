@@ -1,0 +1,10 @@
+{
+  "name": "menu-claude-bundle",
+  "private": true,
+  "description": "Сборка vendor/claude.js (официальный Anthropic SDK для браузера)",
+  "scripts": {
+    "build": "esbuild recognize.mjs --bundle --format=esm --minify --target=es2020 --platform=browser --outfile=../../vendor/claude.js"
+  },
+  "dependencies": { "@anthropic-ai/sdk": "1.11.0" },
+  "devDependencies": { "esbuild": "^0.28.2" }
+}

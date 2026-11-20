@@ -1,0 +1,16 @@
+{
+  "name": "Menu — португальский для еды",
+  "short_name": "Menu PT",
+  "description": "Словарь продуктов, поиск блюд из сфотканных меню и карточки PT ↔ RU",
+  "lang": "ru",
+  "start_url": "./#search",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f6f2ea",
+  "theme_color": "#1f4fa3",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

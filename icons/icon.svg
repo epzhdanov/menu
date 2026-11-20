@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="112" fill="#1f4fa3"/>
+  <g fill="#ffffff" opacity="0.14">
+    <path d="M0 0h256v256H0zM256 256h256v256H256z"/>
+  </g>
+  <circle cx="256" cy="256" r="150" fill="none" stroke="#ffffff" stroke-width="22"/>
+  <circle cx="256" cy="256" r="104" fill="none" stroke="#ffffff" stroke-width="10" opacity="0.6"/>
+  <path d="M120 130v70a26 26 0 0 0 20 25v160h20V225a26 26 0 0 0 20-25v-70h-14v62h-10v-62h-12v62h-10v-62z" fill="#ffffff"/>
+  <path d="M392 130c-22 10-34 45-34 85 0 18 8 30 20 33v137h20V130z" fill="#ffffff"/>
+  <text x="256" y="282" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-weight="700" font-size="84" fill="#ffffff">PT</text>
+</svg>

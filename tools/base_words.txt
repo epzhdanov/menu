@@ -1,0 +1,468 @@
+# формат: português | русский | english ; строка "## категория" задаёт категорию
+## меню и сервис
+a ementa | меню | menu
+a carta de vinhos | винная карта | wine list
+as entradas | закуски, первые блюда | starters
+os petiscos | закуски (как тапас) | small plates, snacks
+o couvert | куверт: хлеб, масло, оливки на столе — платные, можно отказаться | cover (bread, butter, olives) — charged
+as sopas | супы | soups
+os pratos principais | основные блюда | main courses
+o prato do dia | блюдо дня | dish of the day
+o menu do dia | комплексный обед дня | set menu of the day
+a sugestão do chef | рекомендация шефа | chef's suggestion
+a dose | полная порция | full portion
+a meia dose | полпорции | half portion
+para partilhar | на компанию, чтобы разделить | to share
+por pessoa | на человека | per person
+mínimo 2 pessoas | минимум на двоих | minimum 2 people
+à escolha | на выбор | of your choice
+acompanhado de | подаётся с | served with
+o acompanhamento | гарнир | side dish
+a guarnição | гарнир | side dish, garnish
+as sobremesas | десерты | desserts
+as bebidas | напитки | drinks
+a conta | счёт | the bill
+a gorjeta | чаевые | tip
+o empregado de mesa | официант | waiter
+IVA incluído | НДС включён | VAT included
+preço sob consulta | цена по запросу (обычно за кг) | market price
+ao peso | на вес | by weight
+o pequeno-almoço | завтрак | breakfast
+o almoço | обед | lunch
+o jantar | ужин | dinner
+o lanche | перекус, полдник | afternoon snack
+vegetariano | вегетарианский | vegetarian
+vegano | веганский | vegan
+sem glúten | без глютена | gluten-free
+sem lactose | без лактозы | lactose-free
+picante | острый | spicy
+para levar | с собой | to take away
+a esplanada | летняя терраса | outdoor terrace
+a tasca | таверна, простая забегаловка | tavern
+a marisqueira | ресторан морепродуктов | seafood restaurant
+a churrasqueira | гриль-ресторан (курица на углях) | grill house
+a pastelaria | кондитерская-кафе | pastry shop, café
+o prato | тарелка; блюдо | plate; dish
+o copo | стакан, бокал | glass
+a chávena | чашка | cup
+a garrafa | бутылка | bottle
+meia garrafa | полбутылки | half bottle
+o garfo | вилка | fork
+a faca | нож | knife
+a colher | ложка | spoon
+o guardanapo | салфетка | napkin
+com | с | with
+sem | без | without
+bom apetite | приятного аппетита | enjoy your meal
+## приготовление
+grelhado | на гриле | grilled
+assado | запечённый, жаренный в духовке | roasted
+no forno | в духовке | oven-baked
+frito | жареный (на масле, во фритюре) | fried
+cozido | варёный | boiled
+estufado | тушёный | braised, stewed
+guisado | рагу, тушёный | stewed
+salteado | обжаренный (соте) | sautéed
+panado | в панировке | breaded
+recheado | фаршированный | stuffed
+fumado | копчёный | smoked
+cru | сырой | raw
+mal passado | с кровью | rare
+médio | средней прожарки | medium
+bem passado | хорошо прожаренный | well done
+na brasa | на углях | charcoal-grilled
+na grelha | на решётке | on the grill
+na chapa | на раскалённой плите | griddled
+no churrasco | на мангале | barbecued
+ao vapor | на пару | steamed
+gratinado | запечённый с корочкой (гратен) | au gratin
+confitado | конфи, томлёный в жире | confit
+marinado | маринованный | marinated
+picado | рубленый, фарш | minced, chopped
+desfiado | разобранный на волокна | shredded
+caseiro | домашний | homemade
+fresco | свежий | fresh
+congelado | замороженный | frozen
+frio | холодный | cold
+quente | горячий | hot
+da época | сезонный | seasonal
+em cama de | на подушке из | on a bed of
+ao natural | без соуса, натуральный | plain
+em azeite | в оливковом масле | in olive oil
+à lagareiro | запечённый с большим количеством оливкового масла и чеснока, с «битой» картошкой | baked with olive oil and garlic, with smashed potatoes
+à Brás | с картофелем соломкой, яйцом и луком | with shoestring potatoes, egg and onion
+de cebolada | тушёный с луком | in onion sauce
+de escabeche | маринованный в уксусе с луком (эскабече) | escabeche (vinegar marinade)
+à portuguesa | по-португальски | Portuguese-style
+à moda de | в стиле (региона, города) | ... style
+de tacho | тушёный в кастрюле | pot-cooked
+no pão | в хлебе, в булке | in bread
+## мясо
+a carne | мясо | meat
+a carne de vaca | говядина | beef
+a vitela | телятина | veal
+o novilho | молодая говядина | young beef
+a carne de porco | свинина | pork
+o porco preto | чёрная иберийская свинина | Iberian black pork
+o borrego | ягнёнок | lamb
+o cabrito | козлёнок | kid goat
+o carneiro | баранина | mutton
+o frango | курица | chicken
+a galinha | курица (взрослая, для бульона) | hen
+o peru | индейка | turkey
+o pato | утка | duck
+o coelho | кролик | rabbit
+o javali | кабан | wild boar
+o leitão | молочный поросёнок | suckling pig
+o bife | стейк, бифштекс | steak
+o lombo | вырезка, корейка | loin
+o lombinho | мини-вырезка | tenderloin
+o entrecosto | свиные рёбрышки | pork spare ribs
+as costeletas | отбивные на кости | chops
+a picanha | пиканья (стейк с жировой шапкой) | picanha, rump cap
+a posta | толстый кусок, стейк (мясо или рыба) | thick slice, steak
+os secretos | секрето — пашина чёрной свиньи | secreto (pork skirt)
+a pluma | плума — нежная часть свиной шеи | pluma (pork cut)
+as bochechas | щёчки | cheeks
+o fígado | печень | liver
+a dobrada | рубец, требуха | tripe
+as moelas | куриные желудочки | gizzards
+o peito | грудка | breast
+a coxa | бедро (птицы) | thigh
+as asas | крылышки | wings
+a perna | ножка, окорок | leg
+o presunto | сыровяленый окорок (как хамон) | cured ham
+o fiambre | варёная ветчина | cooked ham
+o chouriço | чорису — копчёная колбаса | smoked sausage
+a alheira | алейра — колбаса из птицы и хлеба | alheira (poultry and bread sausage)
+a farinheira | колбаса из муки и сала | flour sausage
+a morcela | кровяная колбаса | blood sausage
+o salpicão | копчёная колбаса из вырезки | smoked loin sausage
+o paio | пайо — копчёная свиная колбаса | paio sausage
+o toucinho | сало, шпик | pork fat, bacon
+a salsicha | сосиска | sausage
+o hambúrguer | бургер, котлета | burger
+## рыба
+o peixe | рыба | fish
+o bacalhau | треска (солёная и сушёная) | salt cod
+o lombo de bacalhau | толстое филе трески | cod loin
+a sardinha | сардина | sardine
+o carapau | ставрида | horse mackerel
+a cavala | скумбрия | mackerel
+o atum | тунец | tuna
+o salmão | лосось | salmon
+o robalo | сибас (лаврак) | sea bass
+a dourada | дорадо | gilt-head bream
+o pargo | пагр, морской лещ | red porgy
+o besugo | пагель, морской лещ | axillary seabream
+o goraz | красный пагель | blackspot seabream
+o sargo | сарг | white seabream
+o linguado | морской язык | sole
+o pregado | тюрбо, калкан | turbot
+o rodovalho | калкан гладкий (ромб) | brill
+o cherne | каменный окунь (полиприон) | wreckfish
+a garoupa | групер | grouper
+o tamboril | морской чёрт | monkfish
+o peixe-espada | рыба-сабля | scabbardfish
+o peixe-espada preto | чёрная рыба-сабля | black scabbardfish
+o espadarte | меч-рыба | swordfish
+a pescada | хек | hake
+a corvina | горбыль | meagre
+o salmonete | барабулька | red mullet
+o peixe-galo | солнечник | John Dory
+o safio | морской угорь | conger eel
+a enguia | угорь | eel
+a raia | скат | skate, ray
+a truta | форель | trout
+a anchova | анчоус | anchovy
+as ovas | икра (рыбья) | fish roe
+o filete | филе | fillet
+## морепродукты
+o marisco | морепродукты | seafood, shellfish
+o camarão | креветка | shrimp
+a gamba | крупная креветка | prawn
+o lagostim | лангустин | langoustine
+a lagosta | лангуст | spiny lobster
+o lavagante | омар | European lobster
+a santola | краб-паук | spider crab
+a sapateira | съедобный краб | brown crab
+o caranguejo | краб | crab
+as amêijoas | венерки, вонголе | clams
+o berbigão | сердцевидки | cockles
+o mexilhão | мидия | mussel
+a ostra | устрица | oyster
+a vieira | морской гребешок | scallop
+os percebes | морские уточки (персебес) | goose barnacles
+o lingueirão | моллюск-нож | razor clam
+o búzio | трубач | whelk
+o polvo | осьминог | octopus
+a lula | кальмар | squid
+as lulinhas | маленькие кальмары | baby squid
+o choco | каракатица | cuttlefish
+os caracóis | улитки | snails
+## овощи
+os legumes | овощи | vegetables
+a batata | картофель | potato
+a batata-doce | батат | sweet potato
+as batatas fritas | картофель фри | French fries
+as batatas a murro | «битая» запечённая картошка | smashed roast potatoes
+o tomate | помидор | tomato
+a cebola | лук | onion
+o alho | чеснок | garlic
+o alho-francês | лук-порей | leek
+a cenoura | морковь | carrot
+a couve | капуста | cabbage
+a couve-galega | листовая капуста (кале) | collard greens, kale
+a couve-flor | цветная капуста | cauliflower
+os brócolos | брокколи | broccoli
+os grelos | молодая ботва репы (рапини) | turnip greens
+os espinafres | шпинат | spinach
+a alface | салат-латук | lettuce
+a rúcula | руккола | rocket
+o agrião | кресс-салат | watercress
+o pepino | огурец | cucumber
+o pimento | сладкий перец | bell pepper
+a malagueta | острый перчик чили | chili pepper
+a beringela | баклажан | aubergine
+a courgette | кабачок | courgette
+a abóbora | тыква | pumpkin
+o feijão | фасоль | beans
+o feijão-verde | стручковая фасоль | green beans
+o grão-de-bico | нут | chickpeas
+as ervilhas | горошек | peas
+as favas | бобы | broad beans
+as lentilhas | чечевица | lentils
+os cogumelos | грибы | mushrooms
+o milho | кукуруза | corn
+os espargos | спаржа | asparagus
+o nabo | репа | turnip
+a beterraba | свёкла | beetroot
+o aipo | сельдерей | celery
+a azeitona | оливка | olive
+os tremoços | люпин (солёная закуска к пиву) | lupini beans
+a salada mista | смешанный салат (латук, помидор, лук) | mixed salad
+## фрукты
+a fruta | фрукты | fruit
+a fruta da época | сезонные фрукты | seasonal fruit
+a maçã | яблоко | apple
+a pera | груша | pear
+a laranja | апельсин | orange
+a tangerina | мандарин | tangerine
+o limão | лимон | lemon
+a lima | лайм | lime
+a banana | банан | banana
+o ananás | ананас | pineapple
+o morango | клубника | strawberry
+a framboesa | малина | raspberry
+o mirtilo | черника | blueberry
+a cereja | черешня, вишня | cherry
+o pêssego | персик | peach
+o alperce | абрикос | apricot
+a ameixa | слива | plum
+a uva | виноград | grape
+o figo | инжир | fig
+o melão | дыня | melon
+a melancia | арбуз | watermelon
+a manga | манго | mango
+o maracujá | маракуйя | passion fruit
+a romã | гранат | pomegranate
+o marmelo | айва | quince
+a nêspera | мушмула | loquat
+o abacate | авокадо | avocado
+o coco | кокос | coconut
+a amêndoa | миндаль | almond
+a noz | грецкий орех | walnut
+a castanha | каштан | chestnut
+o pinhão | кедровый орех | pine nut
+## молочное
+o leite | молоко | milk
+as natas | сливки | cream
+a manteiga | сливочное масло | butter
+o queijo | сыр | cheese
+o queijo fresco | свежий мягкий сыр | fresh cheese
+o requeijão | рекейжан — творожный сыр (как рикотта) | ricotta-like cheese
+o queijo da Serra | сыр Серра — мягкий овечий | Serra cheese (soft sheep's cheese)
+o queijo de cabra | козий сыр | goat's cheese
+o queijo de ovelha | овечий сыр | sheep's cheese
+o iogurte | йогурт | yogurt
+o ovo | яйцо | egg
+a gema | желток | egg yolk
+a clara | белок | egg white
+o ovo estrelado | яичница-глазунья | fried egg
+os ovos mexidos | яичница-болтунья | scrambled eggs
+a omelete | омлет | omelette
+o chantilly | взбитые сливки | whipped cream
+## хлеб и выпечка
+o pão | хлеб | bread
+a broa | броа — кукурузный хлеб | cornbread
+o papo-seco | булочка | bread roll
+o pão de forma | тостовый хлеб | sliced bread
+a torrada | тост с маслом | buttered toast
+a tosta | горячий бутерброд | toasted sandwich
+a tosta mista | горячий бутерброд с ветчиной и сыром | ham and cheese toastie
+a sandes | сэндвич | sandwich
+o croissant | круассан | croissant
+o bolo | торт, пирог, кекс | cake
+a fatia | кусок, ломтик | slice
+o pastel de nata | паштел-де-ната — корзиночка с заварным кремом | custard tart
+o pastel de bacalhau | крокет из трески с картофелем | salt cod fritter
+o folhado | слойка | puff pastry
+o bolo de arroz | рисовый кекс | rice muffin
+a bola de Berlim | пончик с заварным кремом | custard doughnut
+o queque | кекс, маффин | cupcake
+o bolo-rei | рождественский кекс с цукатами | king cake
+a massa | тесто; паста, макароны | dough; pasta
+a farinha | мука | flour
+a empada | закрытый пирожок | small pie
+o rissol | риссоль — жареный пирожок-полумесяц | fried turnover
+o croquete | крокет | croquette
+a chamuça | самоса | samosa
+o salgado | солёная выпечка, закуска | savoury snack
+o pão com chouriço | хлеб, запечённый с чорису | bread baked with chouriço
+a bolacha | печенье | biscuit
+o arroz | рис | rice
+## десерты
+a sobremesa | десерт | dessert
+o doce da casa | фирменный десерт | house dessert
+o arroz-doce | рисовый пудинг с корицей | rice pudding
+o leite-creme | лейте-креме — заварной крем с жжёным сахаром | crème brûlée-style custard
+a mousse de chocolate | шоколадный мусс | chocolate mousse
+o pudim | пудинг, крем-карамель | flan, pudding
+o pão de ló | бисквит | sponge cake
+o toucinho do céu | «небесное сало» — миндальный пирог на желтках | almond and egg yolk cake
+a baba de camelo | «слюна верблюда» — мусс из варёной сгущёнки | condensed milk caramel mousse
+as natas do céu | «небесные сливки» — сливки, меренга, крем, печенье | cream and meringue dessert
+o bolo de bolacha | торт из печенья с кофейным кремом | biscuit cake
+a sericaia | серикайя — запечённый яичный пудинг с корицей | Alentejo egg pudding
+os ovos moles | овуш-молеш — сладкая желтковая масса | sweet egg yolk cream
+a encharcada | эншаркада — желтки в сахарном сиропе | egg yolk in syrup
+a salada de fruta | фруктовый салат | fruit salad
+o gelado | мороженое | ice cream
+o sorvete | сорбет | sorbet
+a tarte | тарт, открытый пирог | tart
+o queijo com marmelada | сыр с айвовым мармеладом | cheese with quince paste
+a marmelada | айвовый мармелад | quince paste
+a compota | варенье, джем | jam
+o mel | мёд | honey
+o açúcar | сахар | sugar
+o chocolate | шоколад | chocolate
+o caramelo | карамель | caramel
+## напитки
+a água | вода | water
+a água com gás | газированная вода | sparkling water
+a água sem gás | вода без газа | still water
+a água fresca | холодная вода | chilled water
+a água natural | вода комнатной температуры | room-temperature water
+o sumo | сок | juice
+o sumo de laranja natural | свежевыжатый апельсиновый сок | fresh orange juice
+o refrigerante | газировка | soft drink
+a limonada | лимонад | lemonade
+o gelo | лёд | ice
+a cerveja | пиво | beer
+a imperial | маленькое разливное пиво (Лиссабон) | small draught beer (Lisbon)
+o fino | маленькое разливное пиво (Порту) | small draught beer (Porto)
+a caneca | кружка пива (0,5 л) | beer mug (0.5 l)
+o vinho | вино | wine
+o vinho tinto | красное вино | red wine
+o vinho branco | белое вино | white wine
+o vinho rosé | розовое вино | rosé wine
+o vinho verde | виньо верде — молодое «зелёное» вино | vinho verde (young wine)
+o vinho da casa | домашнее вино | house wine
+o jarro | кувшин | jug
+o espumante | игристое вино | sparkling wine
+o vinho do Porto | портвейн | port wine
+a ginjinha | жинжинья — вишнёвый ликёр | sour cherry liqueur
+a aguardente | агуарденте — крепкий бренди | brandy, firewater
+o licor | ликёр | liqueur
+a sangria | сангрия | sangria
+o café | кофе (эспрессо) | coffee (espresso)
+a bica | бика — эспрессо (Лиссабон) | espresso (Lisbon)
+o abatanado | американо | long black coffee
+o carioca | слабый эспрессо | weak espresso
+o pingado | эспрессо с каплей молока | espresso with a drop of milk
+a meia de leite | кофе с молоком в чашке | coffee with milk
+o galão | галан — латте в высоком стакане | milky coffee in a glass
+o descafeinado | кофе без кофеина | decaf
+o chá | чай | tea
+o chocolate quente | горячий шоколад | hot chocolate
+## приправы и соусы
+o sal | соль | salt
+a pimenta | перец (молотый) | pepper
+o azeite | оливковое масло | olive oil
+o óleo | растительное масло | vegetable oil
+o vinagre | уксус | vinegar
+a salsa | петрушка | parsley
+os coentros | кинза | coriander
+o louro | лавровый лист | bay leaf
+os orégãos | орегано | oregano
+o alecrim | розмарин | rosemary
+o tomilho | тимьян | thyme
+a hortelã | мята | mint
+os poejos | болотная мята | pennyroyal
+o manjericão | базилик | basil
+o piri-piri | пири-пири — острый перчик/соус | piri-piri chili
+o molho | соус | sauce
+a maionese | майонез | mayonnaise
+a mostarda | горчица | mustard
+o colorau | молотая паприка | paprika
+o caril | карри | curry
+o cominho | зира, кумин | cumin
+a noz-moscada | мускатный орех | nutmeg
+o gengibre | имбирь | ginger
+a canela | корица | cinnamon
+o açafrão | шафран | saffron
+a massa de pimentão | паста из красного перца | red pepper paste
+## блюда
+o caldo verde | калду верде — суп из картофеля и кале с чорису | potato and kale soup
+a sopa de legumes | овощной суп-пюре | vegetable soup
+a canja | канжа — куриный суп с рисом | chicken and rice soup
+o creme de marisco | суп-пюре из морепродуктов | seafood bisque
+a sopa da pedra | «каменный суп» — густой фасолевый с мясом | stone soup (bean and meat)
+o gaspacho | гаспачо | gazpacho
+a açorda alentejana | хлебный суп с чесноком, кинзой и яйцом | Alentejo bread soup
+a açorda de marisco | хлебная каша с морепродуктами | bread and seafood stew
+as migas | мигаш — жареная хлебная каша (гарнир) | fried breadcrumbs side dish
+o bacalhau à Brás | треска с картофелем соломкой, яйцом и луком | salt cod with shoestring potatoes and egg
+o bacalhau com natas | треска, запечённая со сливками и картофелем | salt cod baked with cream
+o bacalhau à Gomes de Sá | треска с картофелем, луком, яйцом и оливками | salt cod with potatoes, onion, egg and olives
+o bacalhau à lagareiro | треска, запечённая в оливковом масле с чесноком | salt cod baked in olive oil
+o bacalhau com grão | треска с нутом | salt cod with chickpeas
+as pataniscas de bacalhau | оладьи с треской | salt cod fritters
+as sardinhas assadas | сардины на углях | grilled sardines
+o polvo à lagareiro | осьминог, запечённый в оливковом масле с чесноком | octopus baked in olive oil
+a salada de polvo | салат из осьминога | octopus salad
+o arroz de marisco | рис с морепродуктами (жидкий, как ризотто) | seafood rice
+o arroz de pato | запечённый рис с уткой и чорису | duck rice
+o arroz de polvo | рис с осьминогом | octopus rice
+o arroz de tamboril | рис с морским чёртом | monkfish rice
+o arroz de cabidela | рис с курицей, тушённой в крови | chicken rice in blood sauce
+o arroz de tomate | томатный рис | tomato rice
+o arroz de feijão | рис с фасолью | rice with beans
+a cataplana | катаплана — рагу (морепродукты/мясо) в медной посуде | cataplana stew
+a caldeirada | калдейрада — рыбное рагу | fish stew
+as amêijoas à Bulhão Pato | вонголе с чесноком, кинзой и лимоном | clams with garlic and coriander
+o camarão ao alho | креветки в чесночном масле | garlic shrimp
+os chocos fritos | жареная каракатица (Сетубал) | fried cuttlefish
+as lulas grelhadas | кальмары на гриле | grilled squid
+os filetes de pescada | филе хека в кляре | battered hake fillets
+o peixe grelhado | рыба на гриле | grilled fish
+a francesinha | франсезинья — сэндвич с мясом под сыром и острым соусом (Порту) | Porto meat sandwich with cheese and sauce
+o prego | прегу — сэндвич со стейком | steak sandwich
+a bifana | бифана — сэндвич со свиной отбивной | pork sandwich
+o bitoque | битоке — стейк с яйцом, картофелем фри и рисом | steak with fried egg and fries
+o cozido à portuguesa | ассорти из варёных мяс, колбас и овощей | Portuguese boiled dinner
+a feijoada | фейжоада — рагу из фасоли с мясом | bean and meat stew
+as tripas à moda do Porto | рубец с фасолью по-портуански | Porto-style tripe
+a carne de porco à alentejana | свинина с вонголе и картошкой | pork with clams
+o leitão à Bairrada | молочный поросёнок, запечённый целиком | roast suckling pig
+o frango piri-piri | курица гриль с острым соусом | piri-piri chicken
+o frango assado | курица-гриль | roast chicken
+o cabrito assado | запечённый козлёнок | roast kid goat
+a chanfana | шанфана — козлятина, тушённая в красном вине | goat stewed in red wine
+a espetada | шашлык | skewer
+os rojões | рожойнш — жареные кусочки свинины | fried pork chunks
+o pica-pau | пика-пау — кусочки мяса в соусе с маринованными овощами | beef bites in sauce with pickles
+os peixinhos da horta | стручковая фасоль в кляре | green beans in batter
+o puré de batata | картофельное пюре | mashed potatoes
+o esparregado | пюре из шпината или зелени | creamed greens
+a salada russa | салат из картофеля, моркови и горошка с майонезом | Russian salad
