@@ -1,5 +1,5 @@
 // Офлайн: всё приложение и данные кешируются при первом открытии.
-const VERSION = "v2";
+const VERSION = "v3";
 const SHELL = `menu-shell-${VERSION}`;
 const RUNTIME = "menu-runtime";
 const FILES = [
