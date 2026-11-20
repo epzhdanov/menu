@@ -137,11 +137,13 @@ main { max-width: 760px; margin: 0 auto; padding: 0 16px 24px; }
 }
 .letters-inner {
   position: sticky; top: calc(61px + 120px + env(safe-area-inset-top));
-  display: flex; flex-direction: column; align-items: center;
+  display: flex; flex-direction: column; align-items: center; justify-content: space-between;
+  /* столбик букв всегда помещается между шапкой и нижним меню */
+  height: min(640px, calc(100dvh - 61px - 120px - var(--tabs-h) - 16px - env(safe-area-inset-top) - env(safe-area-inset-bottom)));
 }
 .letters button {
-  border: 0; background: transparent; color: var(--accent); font-size: 11px; font-weight: 600;
-  padding: 1px 4px; line-height: 1.25;
+  flex: 1; min-height: 0; border: 0; background: transparent; color: var(--accent);
+  font-size: clamp(9px, 1.8dvh, 12px); font-weight: 600; padding: 0 4px; line-height: 1;
 }
 mark { background: color-mix(in srgb, var(--accent) 22%, transparent); color: inherit; border-radius: 3px; padding: 0 1px; }
 

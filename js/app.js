@@ -143,8 +143,11 @@ function wire() {
   $("#dict-letters").addEventListener("click", (e) => {
     const b = e.target.closest("[data-letter]");
     if (!b) return;
-    const el = document.getElementById("L-" + b.dataset.letter);
-    if (el) window.scrollTo({ top: el.getBoundingClientRect().top + scrollY - 175, behavior: "smooth" });
+    // Целимся в первую карточку после заголовка буквы: сам заголовок «липкий», его позиция врёт.
+    const first = document.getElementById("L-" + b.dataset.letter)?.nextElementSibling;
+    if (!first) return;
+    const offset = $(".sticky-tools").getBoundingClientRect().bottom + 40;
+    window.scrollTo({ top: first.getBoundingClientRect().top + scrollY - offset, behavior: "instant" });
   });
   let t;
   $("#search-q").addEventListener("input", () => { clearTimeout(t); t = setTimeout(renderSearch, 120); });
