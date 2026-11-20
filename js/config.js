@@ -1,2 +1,2 @@
 // Репозиторий сайта для синхронизации новых меню (подставляется по умолчанию в настройках).
-export const CONFIG = { repo: "", branch: "main" };
+export const CONFIG = { repo: "epzhdanov/menu", branch: "main" };
