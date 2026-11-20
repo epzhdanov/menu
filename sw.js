@@ -1,5 +1,5 @@
 // Офлайн: всё приложение и данные кешируются при первом открытии.
-const VERSION = "v7";
+const VERSION = "v8";
 const SHELL = `menu-shell-${VERSION}`;
 const RUNTIME = "menu-runtime";
 const OCR = "menu-ocr"; // распознавание на телефоне: ~5 МБ, кешируется один раз и не сбрасывается при обновлениях

@@ -1,7 +1,7 @@
 // «Мои меню»: список, просмотр, добавление по фото (Claude), очередь офлайн, настройки, синхронизация с GitHub.
 import { state, load, menuTitle } from "./data.js";
 import { db, photoURL } from "./store.js";
-import { $, $$, esc, fmtDate, toast, uid, lsGet, lsSet, norm } from "./util.js";
+import { $, $$, esc, fmtDate, toast, uid, lsGet, lsSet, norm, speak, allVoices, ptVoices, chosenVoice, setVoice, savedVoice, voiceKind } from "./util.js";
 import { resetProgress } from "./cards.js";
 import { CONFIG } from "./config.js";
 import { translateDish } from "./ocr.js";
@@ -393,6 +393,15 @@ export function openSettings() {
   const gh = { repo: CONFIG.repo, branch: CONFIG.branch, ...lsGet(K_GH, {}) };
   const key = lsGet(K_API, "");
   const body = openSheet("Настройки", `<div class="settings">
+    <h4>Произношение</h4>
+    <label class="field"><span>Голос для португальских слов</span><select id="s-voice"></select></label>
+    <div class="row"><button class="btn small" id="s-voice-test">▶︎ Проверить</button><span class="muted" id="s-voice-info"></span></div>
+    <details class="help"><summary>Нет португальского голоса или звучит не так?</summary><ol>
+      <li><b>iPhone:</b> Настройки → Универсальный доступ → Устный контент → Голоса → Португальский → <b>Португалия</b> → скачай Joana или Catarina (лучше «улучшенный»). Потом закрой и снова открой приложение.</li>
+      <li><b>Android:</b> Настройки → Специальные возможности → Синтез речи (Преобразование текста в речь) → Google → Установить голосовые данные → Português (Portugal).</li>
+      <li><b>Mac:</b> Системные настройки → Универсальный доступ → Устный контент → Системный голос → Управление голосами → Português (Portugal).</li>
+      <li>Голос «Бразилия» — тоже португальский, но с бразильским произношением.</li></ol></details>
+
     <h4>Claude (распознавание фото меню)</h4>
     <p class="muted">Ключ хранится только в этом браузере и отправляется только в api.anthropic.com.</p>
     <label class="field"><span>API-ключ Anthropic</span><input id="s-key" type="password" autocomplete="off" value="${esc(key)}" placeholder="sk-ant-…"></label>
@@ -420,6 +429,28 @@ export function openSettings() {
     </div>
     <p class="muted" id="s-storage"></p>
   </div>`);
+  // — голос —
+  const fillVoices = () => {
+    const sel = $("#s-voice", body);
+    if (!sel) return;
+    const pts = ptVoices();
+    const others = allVoices().filter((v) => !pts.includes(v));
+    const saved = savedVoice();
+    sel.innerHTML = `<option value="">Автоматически (лучший португальский)</option>` +
+      (pts.length ? `<optgroup label="Португальские">${pts.map((v) => `<option value="${esc(v.voiceURI)}">${esc(v.name)} — ${esc(voiceKind(v))}</option>`).join("")}</optgroup>` : "") +
+      (others.length ? `<optgroup label="Другие (прочитают с акцентом)">${others.map((v) => `<option value="${esc(v.voiceURI)}">${esc(v.name)} — ${esc(v.lang)}</option>`).join("")}</optgroup>` : "");
+    sel.value = allVoices().some((v) => v.voiceURI === saved) ? saved : "";
+    const cur = chosenVoice();
+    $("#s-voice-info", body).textContent = cur
+      ? `Сейчас: ${cur.name} (${cur.lang})`
+      : allVoices().length ? "⚠️ Португальского голоса на устройстве нет — см. подсказку ниже" : "Список голосов загружается…";
+  };
+  fillVoices();
+  if ("speechSynthesis" in window) speechSynthesis.addEventListener?.("voiceschanged", fillVoices, { once: true });
+  setTimeout(fillVoices, 800);
+  $("#s-voice", body).onchange = (e) => { setVoice(e.target.value); fillVoices(); speak("Bom dia! Um bitoque e uma imperial, por favor."); };
+  $("#s-voice-test", body).onclick = () => speak("Bom dia! Um bitoque e uma imperial, por favor.");
+
   $("#s-key-save", body).onclick = () => { lsSet(K_API, $("#s-key", body).value.trim()); toast("Ключ сохранён"); processQueue(); openSettings(); };
   const kd = $("#s-key-del", body); if (kd) kd.onclick = () => { localStorage.removeItem(K_API); openSettings(); };
   $("#s-gh-save", body).onclick = () => {

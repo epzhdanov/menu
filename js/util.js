@@ -75,24 +75,68 @@ export function highlight(text, tokens) {
   return out + (open ? "</mark>" : "");
 }
 
-// Озвучка португальского (работает офлайн, если в системе есть голос pt-PT).
-let voice = null;
-function pickVoice() {
-  const vs = speechSynthesis.getVoices();
-  voice = vs.find((v) => v.lang === "pt-PT") || vs.find((v) => v.lang?.startsWith("pt")) || null;
+// Озвучка португальского (работает офлайн, если в системе есть португальский голос).
+// Голос выбираем в момент озвучки: на iPhone список голосов появляется не сразу,
+// а без явно заданного голоса iOS может прочитать текст системным (например, русским) голосом.
+const VOICE_KEY = "tts.voice";
+const langOf = (v) => String(v?.lang || "").toLowerCase().replace(/_/g, "-");
+export const isPtVoice = (v) => /^(pt|por)\b/.test(langOf(v)) || /portugu/i.test(v?.name || "");
+const isPtPT = (v) => {
+  const l = langOf(v), n = v?.name || "";
+  if (/brasil|brazil|-br\b/i.test(n) || l.endsWith("-br") || l.includes("bra")) return false;
+  return l === "pt-pt" || l.includes("prt") || /portugal|joana|catarina|in[eê]s|cristiano|fernanda|raquel/i.test(n);
+};
+const quality = (v) => (/premium|enhanced|улучш|natural|neural/i.test(v.name) ? 2 : 0) + (v.localService ? 1 : 0);
+
+export function allVoices() {
+  try { return "speechSynthesis" in window ? speechSynthesis.getVoices() : []; } catch { return []; }
 }
+// Португальские голоса: сначала Португалия, потом Бразилия; внутри — лучшие по качеству.
+export function ptVoices() {
+  return allVoices().filter(isPtVoice).sort((a, b) => isPtPT(b) - isPtPT(a) || quality(b) - quality(a) || a.name.localeCompare(b.name));
+}
+export const voiceKind = (v) => (isPtPT(v) ? "Португалия" : isPtVoice(v) ? "Бразилия/другой португальский" : langOf(v));
+export function chosenVoice() {
+  const all = allVoices();
+  const saved = lsGet(VOICE_KEY, "");
+  if (saved) {
+    const v = all.find((x) => x.voiceURI === saved || x.name === saved);
+    if (v) return v;
+  }
+  return ptVoices()[0] || null;
+}
+export const setVoice = (uri) => lsSet(VOICE_KEY, uri || "");
+export const savedVoice = () => lsGet(VOICE_KEY, "");
+
 if ("speechSynthesis" in window) {
-  pickVoice();
-  speechSynthesis.addEventListener?.("voiceschanged", pickVoice);
+  allVoices(); // запускаем загрузку списка голосов заранее
+  speechSynthesis.addEventListener?.("voiceschanged", () => allVoices());
 }
-export function speak(text, lang = "pt-PT") {
+
+let warnedNoVoice = false;
+export function speak(text) {
   if (!("speechSynthesis" in window)) return toast("Озвучка не поддерживается в этом браузере");
   speechSynthesis.cancel();
-  const u = new SpeechSynthesisUtterance(String(text).replace(/\s*\/\s*/g, ", "));
-  u.lang = lang;
-  if (lang.startsWith("pt") && voice) u.voice = voice;
+  // сокращения из меню читаем словами: 1/2 → meia, c/ → com, s/ → sem
+  const spoken = String(text)
+    .replace(/\b1\/2\b/g, "meia")
+    .replace(/(^|\s)c\/\s*(\(com\))?/gi, "$1com ")
+    .replace(/(^|\s)s\/\s*(\(sem\))?/gi, "$1sem ")
+    .replace(/\s*\/\s*/g, ", ");
+  const u = new SpeechSynthesisUtterance(spoken.trim());
+  const v = chosenVoice();
+  if (v) {
+    u.voice = v;
+    u.lang = langOf(v).replace(/-(\w+)$/, (m, r) => "-" + r.toUpperCase());
+  } else {
+    u.lang = "pt-PT";
+    if (!warnedNoVoice) {
+      warnedNoVoice = true;
+      toast("На устройстве не найден португальский голос — как добавить, смотри ⚙︎ → Произношение", 5000);
+    }
+  }
   u.rate = 0.9;
-  speechSynthesis.speak(u);
+  speechSynthesis.speak(u); // вызывается прямо из нажатия — иначе iOS не даст говорить
 }
 
 let toastTimer;
