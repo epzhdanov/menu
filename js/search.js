@@ -114,12 +114,31 @@ function lookup(phrase) {
     const key = [...parts, c].join(" ");
     if (lex.has(key)) return lex.get(key);
   }
-  return null;
+  return fuzzyLookup(phrase);
+}
+
+// Осторожная нечёткая проверка — только для длинных слов и фраз (опечатки, ошибки распознавания).
+const fuzzyMemo = new Map();
+function fuzzyLookup(phrase) {
+  const n = phrase.split(" ").length;
+  const max = n === 1 ? (phrase.length >= 9 ? 2 : phrase.length >= 6 ? 1 : 0) : (phrase.length >= 10 ? 2 : 0);
+  if (!max) return null;
+  if (fuzzyMemo.lex !== state.lexicon) { fuzzyMemo.clear(); fuzzyMemo.lex = state.lexicon; }
+  const memoKey = phrase;
+  if (fuzzyMemo.has(memoKey)) return fuzzyMemo.get(memoKey);
+  let best = null, bd = max + 1;
+  for (const [k, w] of state.lexicon) {
+    if (Math.abs(k.length - phrase.length) > max || k.split(" ").length !== n) continue;
+    const d = lev(phrase, k, max);
+    if (d < bd) { bd = d; best = w; }
+  }
+  fuzzyMemo.set(memoKey, best);
+  return best;
 }
 
 // Возвращает [{text, word|null, minor}] для исходного названия.
 export function breakdown(name) {
-  const raw = String(name).split(/[\s,;()/]+/).filter(Boolean);
+  const raw = String(name).split(/[\s,;()/]+|(?<=[a-zà-ÿ])-(?=[a-zà-ÿ])/i).filter(Boolean);
   const normed = raw.map((r) => norm(r)).map((n) => n.replace(/ /g, ""));
   const out = [];
   let i = 0;

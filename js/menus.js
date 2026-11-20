@@ -4,6 +4,7 @@ import { db, photoURL } from "./store.js";
 import { $, $$, esc, fmtDate, toast, uid, lsGet, lsSet, norm } from "./util.js";
 import { resetProgress } from "./cards.js";
 import { CONFIG } from "./config.js";
+import { translateDish } from "./ocr.js";
 
 const K_API = "claude.apiKey";
 const K_GH = "github.sync";
@@ -124,7 +125,7 @@ export async function openMenu(id) {
 }
 
 // ——— Фото ———
-async function downscale(file, max = 2000, quality = 0.85) {
+async function downscale(file, max = 2400, quality = 0.85) {
   const bmp = await createImageBitmap(file).catch(() => null);
   let w, h, src;
   if (bmp) { w = bmp.width; h = bmp.height; src = bmp; }
@@ -159,23 +160,38 @@ function renderAdd(error = "") {
   const online = navigator.onLine;
   const names = [...new Set(state.menus.map((m) => m.name).filter(Boolean))];
   const body = openSheet("Новое меню", `
-    <p class="muted">Сфотографируй меню целиком (можно несколько страниц). Claude перепишет все блюда и переведёт их на русский и английский.</p>
+    <p class="muted">Сфотографируй меню (можно несколько страниц). Текст распознаётся прямо на телефоне — интернет не нужен.</p>
     <div class="row">
       <label class="btn filebtn">📷 Сфотографировать<input type="file" accept="image/*" capture="environment" id="add-cam"></label>
       <label class="btn secondary filebtn">🖼 Из галереи<input type="file" accept="image/*" multiple id="add-gal"></label>
     </div>
     <div class="photos" id="add-photos"></div>
-    <label class="field"><span>Ресторан (необязательно — Claude попробует прочитать с фото)</span>
+    <label class="field"><span>Ресторан (необязательно)</span>
       <input id="add-name" list="rest-names" value="${esc(draft.name)}" placeholder="Например, Os Barões"></label>
     <datalist id="rest-names">${names.map((n) => `<option value="${esc(n)}">`).join("")}</datalist>
     <label class="field"><span>Дата</span><input id="add-date" type="date" value="${esc(draft.date)}"></label>
     ${error ? `<div class="error">${esc(error)}</div>` : ""}
-    ${!hasKey ? `<div class="note">Для распознавания нужен API-ключ Claude — добавь его в настройках (⚙︎). Без ключа можно сохранить фото и ввести блюда вручную.</div>` : ""}
-    ${!online ? `<div class="note">Нет интернета: фото сохранятся и распознаются автоматически, когда связь появится.</div>` : ""}
+    <div class="muted" id="ocr-status"></div>
     <div class="row" style="margin-top:14px">
-      <button class="btn grow" id="add-go" ${draft.photos.length ? "" : "disabled"}>${online && hasKey ? "Распознать" : "Сохранить фото, распознать позже"}</button>
+      <button class="btn grow" id="add-go" ${draft.photos.length ? "" : "disabled"}>Распознать</button>
+      ${hasKey && online ? `<button class="btn secondary" id="add-claude" ${draft.photos.length ? "" : "disabled"}>Через Claude</button>` : ""}
       <button class="btn ghost" id="add-manual">Ввести вручную</button>
     </div>`);
+
+  import("./ocr.js").then(async (ocr) => {
+    const el = $("#ocr-status", body);
+    if (!el) return;
+    const show = (st) => {
+      el.innerHTML = st === "ready"
+        ? "✅ Распознавание на телефоне готово и работает без интернета."
+        : navigator.onLine
+          ? "⏳ Загружаю распознавание для офлайна (≈5 МБ, один раз)…"
+          : "⚠️ Распознавание ещё не загружено на телефон: открой приложение один раз с интернетом.";
+    };
+    const st = await ocr.ocrStatus();
+    show(st);
+    if (st !== "ready" && navigator.onLine) { await ocr.warmUp(); show(await ocr.ocrStatus()); }
+  });
 
   const renderThumbs = () => {
     $("#add-photos", body).innerHTML = draft.photos.map((p, i) =>
@@ -183,6 +199,8 @@ function renderAdd(error = "") {
     $$("[data-rm]", body).forEach((b) => (b.onclick = () => { draft.photos.splice(+b.dataset.rm, 1); renderThumbs(); }));
     $$("[data-i]", body).forEach((im) => (im.onclick = () => openPhoto(im.src)));
     $("#add-go", body).disabled = !draft.photos.length;
+    const cl = $("#add-claude", body);
+    if (cl) cl.disabled = !draft.photos.length;
   };
   const onFiles = async (e) => {
     for (const f of e.target.files) {
@@ -196,7 +214,9 @@ function renderAdd(error = "") {
   $("#add-gal", body).onchange = onFiles;
   $("#add-name", body).oninput = (e) => (draft.name = e.target.value);
   $("#add-date", body).oninput = (e) => (draft.date = e.target.value);
-  $("#add-go", body).onclick = () => (navigator.onLine && hasKey ? recognizeDraft() : queueDraft());
+  $("#add-go", body).onclick = recognizeOnDevice;
+  const cl = $("#add-claude", body);
+  if (cl) cl.onclick = recognizeDraft;
   $("#add-manual", body).onclick = async () => {
     const photos = await savePhotos(draft.photos);
     openEditor({ id: "m_" + uid(), name: draft.name, label: "меню", date: draft.date, photos, dishes: [{ pt: "", ru: "", en: "", section: "", price: "" }], words: [], isNew: true });
@@ -247,6 +267,33 @@ async function recognizeDraft() {
   }
 }
 
+// Распознавание прямо на телефоне (без интернета).
+async function recognizeOnDevice() {
+  const body = openSheet("Распознаю меню…", `<div class="status"><span class="spinner"></span>
+    <span id="ocr-progress">Читаю ${draft.photos.length > 1 ? draft.photos.length + " фото" : "фото"} прямо на телефоне…</span></div>
+    <p class="muted">Обычно 5–30 секунд на страницу. Интернет не нужен.</p>`);
+  try {
+    const ocr = await import("./ocr.js");
+    const res = await ocr.recognizeOffline(draft.photos.map((p) => p.blob), (label, frac) => {
+      const el = $("#ocr-progress", body);
+      if (el) el.textContent = frac == null ? `${label[0].toUpperCase() + label.slice(1)}…` : `${label[0].toUpperCase() + label.slice(1)}: ${Math.round(frac * 100)}%`;
+    });
+    if (!res.dishes.length) {
+      return renderAdd("Не удалось найти на фото строки меню. Попробуй снять ближе, ровнее и при хорошем свете — или введи блюда вручную.");
+    }
+    const photos = await savePhotos(draft.photos);
+    openEditor({
+      id: "m_" + uid(), name: draft.name || res.title, label: "меню", date: draft.date, photos,
+      dishes: res.dishes, words: [], isNew: true, ocr: true, rawText: res.rawText,
+    });
+  } catch (e) {
+    console.error(e);
+    renderAdd(navigator.onLine
+      ? "Распознавание не запустилось: " + (e?.message || e)
+      : "Распознавание ещё не загружено на этот телефон. Открой приложение один раз с интернетом — после этого оно будет работать офлайн.");
+  }
+}
+
 // Очередь: распознать сохранённые без интернета фото.
 let queueBusy = false;
 export async function processQueue(manual = false) {
@@ -283,6 +330,8 @@ function openEditor(m) {
       <label class="field"><span>Дата</span><input id="e-date" type="date" value="${esc(m.date || "")}"></label>
     </div>
     ${m.isNew && m.words?.length ? `<p class="muted">Новых слов для словаря: ${m.words.filter((w) => !state.words.some((x) => x.k === norm(w.pt.replace(/^(o|a|os|as)\s+/i, "")))).length}</p>` : ""}
+    ${m.ocr ? `<div class="note" style="display:block">Распознано на телефоне. Перевод: <b>✓</b> — блюдо уже встречалось в твоих меню; <b>≈</b> — собран по словам из словаря; <b>?</b> после слова — его нет в словаре. Исправишь название — перевод пересчитается.</div>
+      <details class="help"><summary>Распознанный текст целиком</summary><pre class="raw">${esc(m.rawText || "")}</pre></details>` : ""}
     <div id="e-dishes"></div>
     <div class="row" style="margin-top:10px">
       <button class="btn secondary small" id="e-add">＋ блюдо</button>
@@ -300,13 +349,23 @@ function openEditor(m) {
         <input class="price-in" value="${esc(d.price || "")}" placeholder="Цена" aria-label="Цена">
         <button class="del" aria-label="Удалить блюдо">✕</button>
         <input class="ru-in" value="${esc(d.ru)}" placeholder="Перевод (RU)" aria-label="Перевод на русский">
+        ${d.how && d.how !== "manual" ? `<span class="how">${d.how === "known" ? "✓ уже было в твоих меню" : d.how === "partial" ? "≈ по словам, есть незнакомые слова" : "≈ по словам"}</span>` : ""}
       </div>`;
     });
     $("#e-dishes", body).innerHTML = html;
     $$(".edit-dish", body).forEach((row) => {
       const d = m.dishes[+row.dataset.i];
       row.querySelector(".pt-in").oninput = (e) => (d.pt = e.target.value);
-      row.querySelector(".ru-in").oninput = (e) => (d.ru = e.target.value);
+      // поправили название — пересчитать перевод (если его не правили вручную)
+      row.querySelector(".pt-in").onchange = () => {
+        if (!d.how || d.how === "manual" || !d.pt.trim()) return;
+        const t = translateDish({ pt: d.pt });
+        Object.assign(d, { ru: t.ru, en: t.en, how: t.how });
+        row.querySelector(".ru-in").value = d.ru;
+        const h = row.querySelector(".how");
+        if (h) h.textContent = d.how === "known" ? "✓ уже было в твоих меню" : d.how === "partial" ? "≈ по словам, есть незнакомые слова" : "≈ по словам";
+      };
+      row.querySelector(".ru-in").oninput = (e) => { d.ru = e.target.value; d.how = "manual"; const h = row.querySelector(".how"); if (h) h.remove(); };
       row.querySelector(".price-in").oninput = (e) => (d.price = e.target.value);
       row.querySelector(".del").onclick = () => { m.dishes.splice(+row.dataset.i, 1); renderRows(); };
     });
@@ -317,7 +376,7 @@ function openEditor(m) {
   $("#e-save", body).onclick = async () => {
     const rec = {
       id: m.id, name: $("#e-name", body).value.trim() || "Без названия", label: $("#e-label", body).value.trim(),
-      date: $("#e-date", body).value || null, photos: m.photos || [], kind: m.kind, note: m.note, website: m.website, src: m.src,
+      date: $("#e-date", body).value || null, photos: m.photos || [], kind: m.kind, note: m.note, website: m.website, src: m.src, ocr: m.ocr,
       dishes: m.dishes.filter((d) => d.pt.trim()).map((d) => ({ ...d, pt: d.pt.trim(), ru: d.ru.trim() })),
       words: m.words || [], createdAt: m.createdAt || Date.now(), updatedAt: Date.now(), synced: false,
     };

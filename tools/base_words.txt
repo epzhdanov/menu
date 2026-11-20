@@ -81,6 +81,12 @@ marinado | маринованный | marinated
 picado | рубленый, фарш | minced, chopped
 desfiado | разобранный на волокна | shredded
 caseiro | домашний | homemade
+da casa | фирменный, от заведения | house (speciality)
+do mar | морской | from the sea
+sortido | ассорти | assorted
+inteiro | целый | whole
+regional | местный, региональный | regional
+tradicional | традиционный | traditional
 fresco | свежий | fresh
 congelado | замороженный | frozen
 frio | холодный | cold
@@ -120,6 +126,9 @@ o lombinho | мини-вырезка | tenderloin
 o entrecosto | свиные рёбрышки | pork spare ribs
 as costeletas | отбивные на кости | chops
 a picanha | пиканья (стейк с жировой шапкой) | picanha, rump cap
+a vazia | тонкий край (говядина для стейка) | sirloin
+o fumeiro | копчёности | smoked meats
+os enchidos | колбасы, ассорти колбас | cured sausages
 a posta | толстый кусок, стейк (мясо или рыба) | thick slice, steak
 os secretos | секрето — пашина чёрной свиньи | secreto (pork skirt)
 a pluma | плума — нежная часть свиной шеи | pluma (pork cut)
@@ -177,6 +186,7 @@ a truta | форель | trout
 a anchova | анчоус | anchovy
 as ovas | икра (рыбья) | fish roe
 o filete | филе | fillet
+a petinga | мелкая сардина | small sardine
 ## морепродукты
 o marisco | морепродукты | seafood, shellfish
 o camarão | креветка | shrimp
@@ -241,6 +251,7 @@ o aipo | сельдерей | celery
 a azeitona | оливка | olive
 os tremoços | люпин (солёная закуска к пиву) | lupini beans
 a salada mista | смешанный салат (латук, помидор, лук) | mixed salad
+a tábua | доска-ассорти (сыры, колбасы) | platter
 ## фрукты
 a fruta | фрукты | fruit
 a fruta da época | сезонные фрукты | seasonal fruit

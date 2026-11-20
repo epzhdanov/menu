@@ -195,5 +195,9 @@ async function main() {
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("sw.js").catch((e) => console.warn("SW", e));
   }
+  // Один раз с интернетом скачиваем распознавание фото, чтобы потом оно работало офлайн.
+  setTimeout(() => {
+    if (navigator.onLine) import("./ocr.js").then((m) => m.warmUp()).catch(() => {});
+  }, 4000);
 }
 main();

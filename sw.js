@@ -1,10 +1,11 @@
 // Офлайн: всё приложение и данные кешируются при первом открытии.
-const VERSION = "v5";
+const VERSION = "v7";
 const SHELL = `menu-shell-${VERSION}`;
 const RUNTIME = "menu-runtime";
+const OCR = "menu-ocr"; // распознавание на телефоне: ~5 МБ, кешируется один раз и не сбрасывается при обновлениях
 const FILES = [
   "./", "index.html", "css/app.css", "manifest.webmanifest",
-  "js/app.js", "js/data.js", "js/search.js", "js/cards.js", "js/menus.js", "js/store.js", "js/util.js", "js/config.js",
+  "js/app.js", "js/data.js", "js/search.js", "js/cards.js", "js/menus.js", "js/store.js", "js/util.js", "js/config.js", "js/ocr.js",
   "vendor/claude.js",
   "data/words.json", "data/chat_menus.json", "data/menus.json",
   "icons/icon.svg", "icons/favicon-32.png", "icons/icon-180.png", "icons/icon-192.png", "icons/icon-512.png",
@@ -43,8 +44,8 @@ async function staleWhileRevalidate(req) {
   return cached || (await fresh) || Response.error();
 }
 
-async function cacheFirst(req) {
-  const cache = await caches.open(RUNTIME);
+async function cacheFirst(req, name = RUNTIME) {
+  const cache = await caches.open(name);
   const cached = await cache.match(req);
   if (cached) return cached;
   const res = await fetch(req);
@@ -63,5 +64,6 @@ self.addEventListener("fetch", (e) => {
   }
   if (url.pathname.includes("/data/")) { e.respondWith(networkFirst(req)); return; }
   if (url.pathname.includes("/photos/")) { e.respondWith(cacheFirst(req)); return; }
+  if (url.pathname.includes("/vendor/ocr/")) { e.respondWith(cacheFirst(new Request(url.origin + url.pathname), OCR)); return; }
   e.respondWith(staleWhileRevalidate(req));
 });
