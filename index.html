@@ -69,9 +69,11 @@
       <div id="cards-stats" class="count"></div>
       <div class="card-stage">
         <button id="card" class="flashcard" aria-live="polite">
-          <div class="face front"><div class="card-label"></div><div class="card-word"></div><div class="card-hint">нажми, чтобы перевернуть</div></div>
+          <div class="face front"><div class="card-label"></div><div class="card-word"></div><div class="card-hint">нажми — перевернуть · смахни — дальше</div></div>
           <div class="face back"><div class="card-label"></div><div class="card-word"></div><div class="card-extra"></div></div>
         </button>
+        <button id="card-prev" class="card-nav prev" aria-label="Предыдущая карточка" disabled>‹</button>
+        <button id="card-skip" class="card-nav next" aria-label="Пропустить, следующая карточка">›</button>
       </div>
       <form id="card-answer" class="answer" hidden autocomplete="off">
         <input id="card-input" placeholder="Напиши по-португальски…" autocapitalize="off" spellcheck="false">

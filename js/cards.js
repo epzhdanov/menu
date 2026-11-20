@@ -13,6 +13,7 @@ let current = null;
 let recent = [];
 let flipped = false;
 let answered = false;
+let history = []; // ранее показанные карточки — для кнопки «назад»
 
 function buildDeck() {
   const d = settings.deck;
@@ -80,7 +81,22 @@ function show(card) {
       (card.en ? `<span class="en">EN: ${esc(card.en)}</span>` : "") + (card.src ? `<span class="src">${esc(card.src)}</span>` : "");
   }, 200);
   recent = [card.id, ...recent].slice(0, Math.min(6, Math.floor(deck.length / 2)));
+  $("#card-prev").disabled = !history.length;
   renderStats();
+}
+
+// Следующая карточка (после оценки или без неё).
+function next() {
+  if (current) history.push(current);
+  if (history.length > 100) history.shift();
+  show(pick());
+}
+
+// Пропустить без оценки / вернуться к предыдущей.
+function skip() { next(); }
+function back() {
+  if (!history.length) return;
+  show(history.pop());
 }
 
 function flip() {
@@ -96,7 +112,7 @@ function grade(ok) {
   const b = progress[k]?.b ?? -1;
   progress[k] = { b: ok ? Math.min(5, Math.max(0, b) + 1) : 0, t: Date.now() };
   lsSet(P_KEY, progress);
-  show(pick());
+  next();
 }
 
 function check(e) {
@@ -146,13 +162,32 @@ function setDir(dir) {
 function restart() {
   deck = buildDeck();
   recent = [];
+  history = [];
   show(pick());
+}
+
+// Свайп по карточке: влево — следующая без оценки, вправо — предыдущая.
+function initSwipe(el) {
+  let x0 = 0, y0 = 0, swiped = false;
+  el.addEventListener("touchstart", (e) => { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; swiped = false; }, { passive: true });
+  el.addEventListener("touchend", (e) => {
+    const dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+    if (Math.abs(dx) > 60 && Math.abs(dy) < 50) {
+      swiped = true;
+      if (dx < 0) skip(); else back();
+    }
+  });
+  // после свайпа не переворачивать карточку
+  el.addEventListener("click", (e) => { if (swiped) { e.stopImmediatePropagation(); swiped = false; } }, true);
 }
 
 export function initCards() {
   $$(".seg button").forEach((b) => b.addEventListener("click", () => setDir(b.dataset.dir)));
   $("#cards-deck").addEventListener("change", (e) => { settings.deck = e.target.value; lsSet(S_KEY, settings); restart(); });
+  initSwipe($("#card"));
   $("#card").addEventListener("click", flip);
+  $("#card-skip").addEventListener("click", skip);
+  $("#card-prev").addEventListener("click", back);
   $("#card-yes").addEventListener("click", () => grade(true));
   $("#card-no").addEventListener("click", () => grade(false));
   $("#card-speak").addEventListener("click", () => current && speak(current.pt));
@@ -162,6 +197,8 @@ export function initCards() {
     if (e.key === " ") { e.preventDefault(); flip(); }
     if (e.key === "ArrowRight") grade(true);
     if (e.key === "ArrowLeft") grade(false);
+    if (e.key === "ArrowDown" || e.key === "n") skip();
+    if (e.key === "ArrowUp" || e.key === "b") back();
   });
 }
 
